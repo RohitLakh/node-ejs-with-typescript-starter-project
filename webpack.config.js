@@ -1,5 +1,5 @@
 // The base directory that we want to use
-const baseDirectory = "dist";
+const baseDirectory = "src";
 
 module.exports = {
   // The current mode, defaults to production
@@ -9,8 +9,20 @@ module.exports = {
   entry: {
     "public/js/scripts": [`./${baseDirectory}/public/ts/scripts`],
   },
-
-  // Used for using source maps (used for debugging)
+  // Using the ts-loader module
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
+  // Used for generating source maps (used for debugging)
   devtool: "eval-source-map",
 
   // The location where bundle are stored

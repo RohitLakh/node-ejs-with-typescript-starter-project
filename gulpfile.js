@@ -6,6 +6,7 @@ var del = require("del");
 
 // Task which would transpile typescript to javascript
 gulp.task("typescript", function () {
+    tsProject.config['exclude'] = ["./src/public/ts/**/*"]
     return tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("dist"));
 });
 
